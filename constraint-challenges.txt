@@ -1,0 +1,127 @@
+Challenge: Adding Constraints:
+Add the proper constraints to the name column in our Actors table.
+
+CREATE TABLE Actors (
+  name varchar(50),
+  country varchar(50)
+);
+
+Tasks:
+(1) Currently, our Actors table is allowing NULL values to be set on the name column. We don't want that! Add a constraint that prevents NULL values on the name column.
+(2) The Actors table is also allowing duplicate values for the name column. All values for this column must be unique, so let’s add a constraint that prevents a duplicate name from being inserted.
+
+Answer:
+CREATE TABLE Actors (
+  name varchar(50) NOT NULL UNIQUE,
+  country varchar(50)
+);
+-----------------------------------------------------------------------------------------------------------
+Challenge: Unique Table Constraint:
+Let's take our UNIQUE constraint a step further and ensure there are no duplicates for the combination of values within the name and language columns. To do that, we'll need to use a table constraint.
+
+CREATE TABLE Movies (
+  name varchar(50) NOT NULL UNIQUE,
+  language varchar(50)
+
+);
+
+Tasks:
+(1) First, move the UNIQUE constraint on the name column from a column constraint syntax to a table constraint syntax. Give this constraint the name name_lang.
+(2) Now add the language column to the name_lang UNIQUE table constraint.
+
+Answer:
+CREATE TABLE Movies (
+  name varchar(50) NOT NULL,
+  language varchar(50),
+  CONSTRAINT name_lang UNIQUE (name, language)
+-----------------------------------------------------------------------------------------------------------
+Challenge: Primary Key Constraint:
+Let's add a new column to our Actors table.
+
+CREATE TABLE Actors (
+  
+  name varchar(50) NOT NULL UNIQUE,
+  country varchar(50)
+);
+
+Tasks:
+(1) Add a new id column to the Actors table with the int type.
+(2) Add a single constraint to the id column that ensures it is both UNIQUE and NOT NULL
+
+Answer:
+  id int PRIMARY KEY,
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+Challenge: Foreign Key Constraint:
+Add a foreign key to the Actors table that references data in the Countries table, shown below.
+
+CREATE TABLE Actors (
+  id int PRIMARY KEY,
+  name varchar(50) NOT NULL UNIQUE,
+  country_id int REFERENCES Countries (id)
+);
+
+Tasks:
+(1) Add a FOREIGN KEY constraint to the country_id column in the Actors table that ensures values set to the country_id column match existing values for the id column on the Countries table.
+(2) Add a PRIMARY KEY constraint to the id column on the Actors table.
+(3) Lastly, add a constraint that ensures values set to the name column are neither NULL or duplicates.
+
+Answer:
+CREATE TABLE Actors (
+  id int PRIMARY KEY,
+  name varchar(50) NOT NULL UNIQUE,
+  country_id int REFERENCES Countries (id)
+);
+-----------------------------------------------------------------------------------------------------------
+Challenge: Foreign Key Table Constraints:
+Let's convert the current FOREIGN KEY column constraint to use the table constraint syntax.
+
+CREATE TABLE Actors (
+  id int PRIMARY KEY,
+  name varchar(50) NOT NULL UNIQUE,
+  country_id int REFERENCES Countries(id)
+);
+
+Task:
+(1) Change the FOREIGN KEY column constraint syntax for the country_id column to use the table constraint syntax.
+
+Answer:
+  country_id int,
+  FOREIGN KEY (country_id) REFERENCES Countries (id)
+-----------------------------------------------------------------------------------------------------------
+Challenge: Dropping Tables with Foreign Key:
+Let's try dropping a table that has a Foreign Key.
+
+Task:
+(1) Trying to DROP the Countries table first will give us an error because there are rows on the Actors table that are referencing existing countries. Drop both tables in the appropriate order.
+
+Answer:
+DROP TABLE Actors;
+DROP TABLE Countries;
+-----------------------------------------------------------------------------------------------------------
+Challenge: CHECK Constraints:
+Let's add some CHECK constraints to our Actors table to prevent bad data from being inserted.
+
+CREATE TABLE Actors (
+  id int PRIMARY KEY,
+  name varchar(50) NOT NULL UNIQUE,
+  salary integer,
+  bonus integer,
+  country_id int REFERENCES Countries(id)
+);
+
+Tasks:
+(1) Some of our actors have been way underpaid. This is just not right! Add a CHECK constraint to prevent values less than 500 from being assigned to the salary column.
+(2) On top of their salaries, actors will start receiving bonuses. However, values for bonus need to be less than values for salary. Add a CHECK column constraint to enforce this condition on the bonus column.
+
+Answer:
+CREATE TABLE Actors (
+  id int PRIMARY KEY,
+  name varchar(50) NOT NULL UNIQUE,
+  salary integer CHECK (salary > 500),
+  bonus integer CHECK (bonus < salary), ?????????????????????????????????????????????????????????????????????
+  country_id int REFERENCES Countries(id)
+);

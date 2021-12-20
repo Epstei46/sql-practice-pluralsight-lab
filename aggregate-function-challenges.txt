@@ -1,0 +1,83 @@
+Challenge: Actor Pay Rates:
+            Actors
+name	                    country salary
+Vivien Leigh                IN	    150000
+Clark Gable                 USA	    120000
+Olivia de Havilland	Japan	        30000
+Hattie McDaniel	USA                 45000
+
+Tasks:
+(1) Write a query that returns the maximum value for the salary column in the Actors table.
+(2) Let's add another value to the return of this query. This time, add a function call that returns the minimum value for the salary column in the Actors table.
+
+Answer:
+SELECT max(salary), min(salary) FROM Actors;
+-----------------------------------------------------------------------------------------------------------
+Challenge: Counting Actors:
+            Actors
+id	name	                country
+1	Vivian Leigh	        IN
+2	Clark Gable             USA
+3	Olivia de Havilland     Japan
+4	Hattie McDaniel         USA
+5	John Stamos	            USA
+
+Tasks:
+(1) Write a query that returns the total number of actors in the Actors table.
+(2) Let's add a WHERE clause to filter the result set. Go ahead and filter the results to only count American actors.
+
+Answer:
+SELECT count(*) FROM Actors WHERE country = 'USA';
+-----------------------------------------------------------------------------------------------------------
+Challenge: Adding Numeric Values:
+            Actors
+name	            country	salary
+Vivien Leigh	    IN	    150000
+Clark Gable	        USA	    120000
+Olivia de Havilland	Japan	30000
+Hattie McDaniel	    USA	    45000
+NULL	            USA	    10000
+
+Task:
+(1) Write a query that adds up all of the values from the salary column in the Actors table.
+
+Answer:
+SELECT sum(salary) FROM Actors;
+-----------------------------------------------------------------------------------------------------------
+Challenge: Average Salary:
+            Actors
+name	            country	    salary
+Vivien Leigh	    IN	    150000
+Clark Gable	        USA	    120000
+Olivia de Havilland	Japan	30000
+Hattie McDaniel	    USA	    45000
+
+Tasks:
+(1) Write a query that calculates the average salary for all actors in our Actors table.
+(2) Now filter the query in order to calculate the average of only American actors.
+
+Answer:
+SELECT avg(salary) FROM Actors WHERE country = 'USA';
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+Challenge: Filtering Aggregates:
+                Actors
+name	                country	salary	role
+Vivien Leigh	        IN	    150000	leading
+Clark Gable	            USA	    120000	leading
+Olivia de Havilland	    Japan	30000	leading
+Hattie McDaniel	        USA	    45000	supporting
+Leslie Howard	        UK	    50000	leading
+Alicia Rhett	        USA	    97000	supporting
+Lillian Kemble-Cooper	UK	    95000	supporting
+
+Tasks:
+(1) Use the GROUP BY clause to write a query that returns the country name and total salary paid to actors for each country.
+(2) Now use the HAVING clause to add a filter so that only countries with more than 1 actor are returned from our SQL query.
+(3) Lastly, let’s add a condition to filter only actors with a supporting role. This condition will need to be run before the grouping of records happen.
+
+Answer:
+SELECT country, sum(salary)
+FROM Actors WHERE role = 'supporting'
+GROUP BY country HAVING count(*) > 1;

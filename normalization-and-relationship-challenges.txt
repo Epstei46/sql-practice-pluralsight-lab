@@ -1,0 +1,66 @@
+Challenge: Join Table Creation SQL
+Now that we've named the join table for the tables below, please finish the create table definition by adding the proper foreign keys.
+
+CREATE TABLE Actors_Movies (....);
+
+--Actors
+id	name
+1	Vivien Leigh
+2	Clark Gable
+3	Olivia de Havilland
+
+--Movies
+id	title
+1	Don Juan
+2	The Lost World
+3	Peter Pan
+4	Robin Hood
+
+Tasks:
+(1) First, let's add the new columns. The new columns we add should have type int to match the data they will hold. Per convention, let's name these columns actor_id and movie_id.
+
+(2) Now, let's add FOREIGN KEY constraints to both of these columns, as column constraints, referencing the appropriate tables.
+
+Answer:
+CREATE TABLE Actors_Movies (
+movie_id int REFERENCES movies(id),
+actor_id int REFERENCES actors(id)
+);
+
+-----------------------------------------------------------------------------------------------------------
+
+Challenge: Inserting a Join Row
+A new movie just came out, The Wolfman, starring our favorite actor, Clark Gable. Both the movie and the actor are in our database, but now they need an association created.
+
+--Actors
+id	name
+1	Vivien Leigh
+2	Clark Gable
+3	Olivia de Havilland
+
+--Movies
+id	title
+1	Don Juan
+2	The Lost World
+3	Peter Pan
+4	Robin Hood
+5	The Wolfman
+
+--Actors_Movies
+actor_id	movie_id
+1		1
+1		2
+2		3
+3		2
+3		4
+
+Tasks:
+(1) Update the two NULL values in the INSERT statement to the appropriate actor_id and movie_id.
+-- INSERT INTO Actors_Movies (actor_id, movie_id) VALUES (NULL, NULL);
+
+Answer:
+-- INSERT INTO Actors_Movies (actor_id, movie_id) VALUES (2, 5);
+
+-----------------------------------------------------------------------------------------------------------
+
+Challenge: Creating a Relationship

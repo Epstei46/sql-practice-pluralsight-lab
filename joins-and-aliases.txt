@@ -1,0 +1,50 @@
+Challenge: Your First Inner Join
+Lets write our first INNER JOIN given the data in the following tables.
+
+--Movies
+id	title
+1	Don Juan
+2	The Lost World
+3	Peter Pan
+4	Robin Hood
+
+--Rooms
+id	seats	movie_id
+1	50	    2
+2	100	    1
+3	100	    NULL
+4	150	    3
+
+Tasks:
+(1) Join the Movies table with the Rooms table so that we only fetch movies that have an associated room.
+(2) Let's get a little more specific, and only return the movie title, the id for the room, and number of seats in the theatre.
+(3) Now, let's filter the results more by only showing theatres with more than 75 seats. Remember, the WHERE clause should go after the JOIN syntax.
+(4) Finally, let's sort the result by seats in the theatre from most to least seats.
+
+Answer:
+SELECT Movies.title, Rooms.id, Rooms.seats From Movies
+INNER JOIN Rooms ON Movies.id=Rooms.movie_id
+WHERE Rooms.seats > 75 ORDER BY Rooms.seats DESC;
+
+-----------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------
+

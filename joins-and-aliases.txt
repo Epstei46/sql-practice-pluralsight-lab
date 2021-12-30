@@ -169,11 +169,34 @@ LEFT OUTER JOIN rooms r ON m.id=r.movie_id;
 
 -----------------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------------------------
+Challenge: On the Other Hand
+We need to modify this query shown in the editor.
 
------------------------------------------------------------------------------------------------------------
+--Movies
+id	title
+1	Don Juan
+2	The Lost World
+3	Peter Pan
+4	Robin Hood
 
------------------------------------------------------------------------------------------------------------
+--Rooms
+id	seats	movie_id
+1	50	    2
+2	100	    1
+3	100	    NULL
+4	150	    3
 
------------------------------------------------------------------------------------------------------------
+Given:
+-- SELECT m.title, r.id "Theatre Number"
+-- FROM Movies m
+-- LEFT OUTER JOIN Rooms r
+-- ON m.id = r.movie_id;
 
+Task:
+(1) Let's change the query to return all of the rooms and only the movies with associated rooms.
+
+Answer:
+SELECT m.title, r.id "Theatre Number"
+FROM Movies m
+RIGHT OUTER JOIN Rooms r
+ON m.id = r.movie_id;

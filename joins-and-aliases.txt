@@ -106,6 +106,38 @@ ORDER BY r.seats desc;
 
 -----------------------------------------------------------------------------------------------------------
 
+Challenge: Three Table Aliases
+Modify the query shown in the editor to utilize aliases.
+
+--Actors
+id	name
+1	Vivien Leigh
+2	Clark Gable
+3	Olivia de Havilland
+
+--Movies
+id	title
+1	Don Juan
+2	The Lost World
+3	Peter Pan
+4	Robin Hood
+
+--Actors_Movies
+actor_id	movie_id
+1	    1
+1	    2
+2	    3
+3	    2
+3	    4
+
+Task:
+(1) Shorten this query to use 3 different table aliases.
+
+Answer:
+SELECT a.name, m.title FROM Actors a
+INNER JOIN Actors_Movies am ON a.id = am.actor_id
+INNER JOIN Movies m ON am.movie_id = m.id
+ORDER BY m.title;
 
 -----------------------------------------------------------------------------------------------------------
 

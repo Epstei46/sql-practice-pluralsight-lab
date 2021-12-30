@@ -64,3 +64,28 @@ Answer:
 -----------------------------------------------------------------------------------------------------------
 
 Challenge: Creating a Relationship
+Our movie theatre has 5 rooms to show movies, and can only show 1 movie at a time. Given the Movies table shown below, modify our Rooms table to create a one-to-one relationship with Movies.
+
+--Movies
+id	title
+1	Don Juan
+2	The Lost World
+3	Peter Pan
+4	Robin Hood
+5	The Wolfman
+
+Tasks:
+CREATE TABLE Rooms (id int PRIMARY KEY, seats int, ....);
+(1) First, add the SQL to create the relationship. Add a movie_id column with the int type.
+
+(2) Next, add the proper FOREIGN KEY constraint using the table constraint syntax, so we don't end up with orphaned records.
+
+(3) Lastly, in our theatre 1 movie can play in one room at a time. Let's add a constraint that will ensure that no movies are ever marked to play in the same room at the same time.
+
+Answer:
+CREATE TABLE Rooms (
+  id int PRIMARY KEY,
+  seats int,
+  movie_id int UNIQUE REFERENCES movies(id),
+  CONSTRAINT FK_movie FOREIGN KEY (movie_id) REFERENCES movies
+);
